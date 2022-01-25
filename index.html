@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Jonathan's Website</title>
+        <style>
+            body {
+                background: rgb(89, 177, 133);
+                color: rgb(45, 45, 45);
+                padding: 10px;
+                font-family: 'Times New Roman';
+            }
+            header {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            #all-contents {
+                max-width: 800px;
+                margin: auto;
+            }
+            /* navigation menu */
+            nav {
+                background: rgb(14, 12, 90);
+                margin: 0 auto;
+                margin-bottom: 20px;
+                display: flex;
+                padding: 10px;
+            }
+            h1 {
+                display: flex;
+                align-items: center;
+                color: white;
+                flex: 1;
+                margin: 0;
+            }
+            #nav-ul {
+                list-style-image: none;
+            }
+            .nav-li {
+                display: inline-block;
+                padding: 0 10px;
+            }
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
+
+            /* main container area beneath menu */
+            main {
+                background: rgb(207, 192, 126);
+                display: flex;
+            }
+            .sidebar {
+                margin-right: 25px;
+                padding: 10px;
+            }
+            .sidebar-img {
+                width: 200px;
+                border-radius: 50% 20% / 10% 40%;
+            }
+            .content {
+                flex: 1;
+                padding: 15px;
+            }
+            #interests {
+                border: 4px silver ridge;
+                padding: 8px;
+            }
+            h2, h3 {
+                margin: 0px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <!-- All content goes here -->
+         <div id="all-contents">
+             <nav>
+                <h1>Jonathan's Website</h1>
+                <ul id="nav-ul">
+                    <li class="nav-li">
+                        <a href="index.html"> Home </a>
+                    </li>
+                    <li class="nav-li">
+                        <a href="portfolio.html"> Portfolio </a>
+                    </li>
+                </ul>
+             </nav>
+             
+             <main>
+                 <!--Sidebar section-->
+                 <div>
+                    <img class="sidebar-img" src="https://i.kym-cdn.com/photos/images/newsfeed/001/966/661/fb8">
+                </div>
+
+                 <!--Content section-->
+                 <div class="content">
+                     <h2>Jonathan Dempsey</h2>
+                     <p>Student at Destrehan High</p>
+                     <!--Interests section-->
+                     <div id="interests">
+                         <h3>Interests</h3>
+                         <ul>
+                             <li>Playing Games</li>
+                             <li>Reading</li>
+                             <li>Sleeping</li>
+                         </ul>
+                     </div>
+                 </div>
+             </main>
+         </div>
+    </body>
+</html>
