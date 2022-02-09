@@ -1,6 +1,6 @@
 
 body {
-  background-color: darkgreen;
+  background-color: rgb(14, 173, 14);
 }
 
 #board {
@@ -11,11 +11,21 @@ body {
   position: relative;
 }
 
-#gameItem {
+#walker {
   background-color: teal;
   width: 50px;
   height: 50px;
   position: absolute;
-/*   left: 100px; */  /* Uncomment if you want to set a "starting" position */
-/*   top: 100px;  */  /* Uncomment if you want to set a "starting" position */
+  border-radius: 50px;
+  /* left: 100px;  /* Uncomment if you want to set a "starting" position */
+  /* top: 100px;   /* Uncomment if you want to set a "starting" position */
+}
+#runner {
+  background-color: rgb(195, 204, 74);
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  border-radius: 50px;
+  left: 300px;  
+  top: 300px;   
 }
