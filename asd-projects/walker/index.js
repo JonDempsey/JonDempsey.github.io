@@ -13,20 +13,23 @@ function runProgram(){
   
   // Game Item Objects
 var KEY = {
-  "LEFT": 37,
-  "UP": 38,
-  "RIGHT": 39,
-  "DOWN": 40,
-  "W": 87,
-  "A": 65,
-  "S": 83,
-  "D": 68,
+  "LEFT": 37,   // Player 1 controls
+  "UP": 38,     // |
+  "RIGHT": 39,  // |
+  "DOWN": 40,   // V
+  "W": 87,      // Player 2 controls
+  "A": 65,      // |
+  "S": 83,      // |
+  "D": 68,      // V
 }
+
+// Player 1 Position and Speed
 var walkerPositionX = 0;
 var walkerPositionY = 0;
 var walkerSpeedX = 0;
 var walkerSpeedY = 0;
 
+// Player 2 Position and Speed
 var runnerPositionX = 0;
 var runnerPositionY = 0;
 var runnerSpeedX = 0;
@@ -47,30 +50,32 @@ var runnerSpeedY = 0;
   */
   function newFrame() {
     repositionGameItem();
+      // Player 1 Boundaries //
     if (walkerPositionX < -15){
-      walkerPositionX = 0;
+      walkerPositionX = 0;   // Left Boundary
     }
     if (walkerPositionX > 405){
-      walkerPositionX = 390;
+      walkerPositionX = 390; // Right Boundary
     }
     if (walkerPositionY < -15){
-      walkerPositionY = 0;
+      walkerPositionY = 0;   // Top Boundary
     }
     if (walkerPositionY > 405){
-      walkerPositionY = 390;
+      walkerPositionY = 390; // Bottom Boundary
     }
     
+      // Player 2 Boundaries //
     if (runnerPositionX < -15){
-      runnerPositionX = 0;
+      runnerPositionX = 0;   // Left Boundary
     }
     if (runnerPositionX > 405){
-      runnerPositionX = 390;
+      runnerPositionX = 390; // Right Boundary
     }
     if (runnerPositionY < -15){
-      runnerPositionY = 0;
+      runnerPositionY = 0;   // Top Boundary
     }
     if (runnerPositionY > 405){
-      runnerPositionY = 390;
+      runnerPositionY = 390; // Bottom Boundary
     }
     redrawGameItem();
   }
@@ -79,6 +84,7 @@ var runnerSpeedY = 0;
   Called in response to events.
   */
   function handleKeyDown(event) {
+      // Player 1 Directional Movement
     if (event.which === KEY.LEFT) {
       walkerSpeedX = -10;
     }  
@@ -92,6 +98,7 @@ var runnerSpeedY = 0;
       walkerSpeedY = 10;
     }  
 
+      // Player 2 Directional Movement
     if (event.which === KEY.A) {
       runnerSpeedX = -10;
     }  
@@ -105,7 +112,7 @@ var runnerSpeedY = 0;
       runnerSpeedY = 10;
     }  
   }
-  function handleKeyUp(event){
+  function handleKeyUp(event){    // Upon keys being released, they won't interfere with perpendicular directions
     if ((event.which === KEY.LEFT) || (event.which === KEY.RIGHT)){
       walkerSpeedX = 0;
     }
@@ -124,17 +131,19 @@ var runnerSpeedY = 0;
   ////////////////////////////////////////////////////////////////////////////////
 
   function repositionGameItem() {
+        // Player 1 Movement
     walkerPositionX += walkerSpeedX;
     walkerPositionY += walkerSpeedY;
-
+        // Player 2 Movement
     runnerPositionX += runnerSpeedX;
     runnerPositionY += runnerSpeedY;
   }
 
   function redrawGameItem() {
+        // Player 1 rewrite
     $("#walker").css("left", walkerPositionX);
     $("#walker").css("top", walkerPositionY);
-
+        // Player 2 rewrite
     $("#runner").css("left", runnerPositionX);
     $("#runner").css("top", runnerPositionY);
   }
