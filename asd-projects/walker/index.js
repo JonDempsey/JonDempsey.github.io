@@ -50,33 +50,7 @@ var runnerSpeedY = 0;
   */
   function newFrame() {
     repositionGameItem();
-      // Player 1 Boundaries //
-    if (walkerPositionX < -15){
-      walkerPositionX = 0;   // Left Boundary
-    }
-    if (walkerPositionX > 405){
-      walkerPositionX = 390; // Right Boundary
-    }
-    if (walkerPositionY < -15){
-      walkerPositionY = 0;   // Top Boundary
-    }
-    if (walkerPositionY > 405){
-      walkerPositionY = 390; // Bottom Boundary
-    }
-    
-      // Player 2 Boundaries //
-    if (runnerPositionX < -15){
-      runnerPositionX = 0;   // Left Boundary
-    }
-    if (runnerPositionX > 405){
-      runnerPositionX = 390; // Right Boundary
-    }
-    if (runnerPositionY < -15){
-      runnerPositionY = 0;   // Top Boundary
-    }
-    if (runnerPositionY > 405){
-      runnerPositionY = 390; // Bottom Boundary
-    }
+    checkBoundaries();
     redrawGameItem();
   }
   
@@ -129,6 +103,36 @@ var runnerSpeedY = 0;
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+
+  function checkBoundaries(){
+      // Player 1 Boundaries //
+      if (walkerPositionX < -15){
+        walkerPositionX = 0;   // Left Boundary
+      }
+      if (walkerPositionX > 405){
+        walkerPositionX = 390; // Right Boundary
+      }
+      if (walkerPositionY < -15){
+        walkerPositionY = 0;   // Top Boundary
+      }
+      if (walkerPositionY > 405){
+        walkerPositionY = 390; // Bottom Boundary
+      }
+      
+        // Player 2 Boundaries //
+      if (runnerPositionX < -15){
+        runnerPositionX = 0;   // Left Boundary
+      }
+      if (runnerPositionX > 405){
+        runnerPositionX = 390; // Right Boundary
+      }
+      if (runnerPositionY < -15){
+        runnerPositionY = 0;   // Top Boundary
+      }
+      if (runnerPositionY > 405){
+        runnerPositionY = 390; // Bottom Boundary
+      }
+  }
 
   function repositionGameItem() {
         // Player 1 Movement
