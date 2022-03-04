@@ -125,9 +125,9 @@ function shiftRight(){
 }
 
 function applySmudge(smudgeType){
-    for (var row = 0; row < image.length; row++){
+    for (var r = 0; r < image.length; r++){
 
-        var row = image[row];                                               //  condenses chosen row
+        var row = image[r];                                               //  condenses chosen row
 
         for (var column = 0; column < (row.length-1); column++){
 
