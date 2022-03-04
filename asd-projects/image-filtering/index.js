@@ -11,6 +11,9 @@ $(document).ready(function(){
 
     applyFilterNoBackground(increaseGreenByBlue);
 
+    //shiftRight();
+
+    applySmudge(smudgeLeft);
 
     render($display, image);
 });
@@ -23,9 +26,9 @@ $(document).ready(function(){
 
 // nested loop to access each value of 2D array//
 function applyFilter(filterFunction){
-    for (var row = 0; row < 17; row++){
+    for (var row = 0; row < image.length; row++){
 
-        for (var column = 0; column < 14; column++){
+        for (var column = 0; column < image[row].length; column++){
             var rgbString = image[row][column];           //    accesses each value in the 2D array
 
             var rgbNumbers = rgbStringToArray(rgbString); //    converts each value's string into RGB
@@ -46,9 +49,9 @@ function applyFilterNoBackground(filterFunction){
 
     var background = image[0][0];                             //    background value to ignore
 
-    for (var row = 0; row < 17; row++){
+    for (var row = 0; row < image.length; row++){
 
-        for (var column = 0; column < 14; column++){
+        for (var column = 0; column < image[row].length; column++){
             if ((background === image[row][column]) === false ){
             
                 var rgbString = image[row][column];           //    accesses each value in the 2D array
@@ -94,3 +97,57 @@ function increaseGreenByBlue(array){
 }
 
 // CHALLENGE code goes below here
+
+function shiftRight(){
+
+    var replaceValue;
+    var storedColor;
+
+    for (var row = 0; row < image.length; row++){
+
+        for (var column = 0; column < image[row].length; column++){
+
+            storedColor = image[row][column];               //  temporary variable intended to store the original color of the space
+
+            if (column === 0){
+                image[row][column] = image[0][0];           //  if the space was in the first column, keep its color
+            }  
+            else {
+                image[row][column] = replaceValue;          //  if the space was not in the first column, replace it with a preset color
+            }
+
+            replaceValue = storedColor;                     //  set the temporary variable to the next available color
+
+        }
+
+    }
+
+}
+
+function applySmudge(smudgeType){
+    for (var row = 0; row < image.length; row++){
+
+        var row = image[row];                                               //  condenses chosen row
+
+        for (var column = 0; column < (row.length-1); column++){
+
+            var rgbString = row[column];                                    //  accesses each value in the row, except for the final value
+            var neighborRgbString = row[(column+1)];                        //  accesses each neighboring value to the one above
+
+            var rgbNumbers = rgbStringToArray(rgbString);                   //  converts selected value's string into rgb
+            var neighborRgbNumbers = rgbStringToArray(neighborRgbString);   //  converts value's neighbor into rgb
+
+            smudgeType(rgbNumbers, neighborRgbNumbers);                     //  smudges rgb from the right neighbor to the current spot
+            
+            rgbString = rgbArrayToString(rgbNumbers);                       //  returns rgb value into string
+            
+            row[column] = rgbString;                                        //  places rgb value back into image
+
+        }
+    }
+}
+function smudgeLeft(currentSpot, valueTaken){
+    currentSpot[RED] = (currentSpot[RED] + valueTaken[RED]) / 2;
+    currentSpot[BLUE] = (currentSpot[BLUE] + valueTaken[BLUE]) / 2;
+    currentSpot[GREEN] = (currentSpot[GREEN] + valueTaken[GREEN]) / 2;
+}
