@@ -11,7 +11,7 @@ $(document).ready(function(){
 
     applyFilterNoBackground(increaseGreenByBlue);
 
-    //shiftRight();
+    shiftRight();
 
     applySmudge(smudgeLeft);
 
