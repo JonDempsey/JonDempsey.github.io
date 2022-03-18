@@ -2,12 +2,13 @@
 const SQUARE_SIZE = 20;
 
 // set constants for the indexes of R, G, and B values
+//they allow editing of each individual value in the rgb
 const RED = 0;
 const GREEN = 1;
 const BLUE = 2;
 
 // the image data
-const image = [
+const image = [     //  These are all of the pixels that make up the image
     ["rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)"],
     ["rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)"], 
     ["rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(50, 200, 50)",   "rgb(150, 150, 150)", "rgb(150, 150, 150)"], 
@@ -33,10 +34,10 @@ function render(element, image){
             var color = image[r][c];
             
             $("<div>").appendTo(element)
-                    .addClass("square")
-                    .css('left', c * SQUARE_SIZE)
-                    .css('top', r * SQUARE_SIZE)
-                    .css('background-color', color)
+                    .addClass("square")             //creates pixel
+                    .css('left', c * SQUARE_SIZE)       //
+                    .css('top', r * SQUARE_SIZE)        //place and color the pixels in order
+                    .css('background-color', color)     //
         }
     }
 }
