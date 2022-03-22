@@ -41,7 +41,7 @@ async function quickSort(array, left, right){
         return;                                         //  stop
     }
 
-    var index = await partition(array, left, right);    //  divide the array for sorting
+    var index = await partition(array, left, right);    //  divide the unsorted part of the array in half
 
     if (left < index-1){                                //  after values have inched toward their proper place
         await quickSort(array, left, right-1);          //  shorten range to pinpoint location
@@ -60,18 +60,18 @@ async function partition(array, left, right){
     var pivot = array[Math.floor((right + left)/2)].value;
 
     while (left < right){
-        while (array[left].value < pivot){              //  if the top has a too large value
+        while (array[left].value < pivot){              //  if the top has a larger value than the measured median
             left = left + 1;                            //  drop it lower
         }
 
-        while (array[right].value > pivot){             //  if the top has a too low value
+        while (array[right].value > pivot){             //  if the top has a lower value than the measured median
             right = right - 1;                          //  raise it higher
         }
 
         if (left < right){
             swap(array, left, right)                    //  swap left and right value
     
-            updateCounter(quickCounter);
+            updateCounter(quickCounter);                //  update CSS
             await sleep();
         }
     }
