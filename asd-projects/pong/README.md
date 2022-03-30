@@ -38,7 +38,7 @@ With your partner, consider each of these questions and make sure you are aligne
 
 ### User Story / Gameplay
 - Describe the gameplay
-- What are the conditions when the game begins? 
+- What are the conditions when the game begins?
 - Does the game have an end? If so, what are the conditions for when it ends?
 - What `if`s will there be?
 

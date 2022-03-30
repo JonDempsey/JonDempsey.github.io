@@ -1,0 +1,29 @@
+### User Story / Gameplay
+- Describe the gameplay
+    A ball bouncing between two "paddles"
+- What are the conditions when the game begins?
+    The game sets the ball's position to a median value and drifts it toward Player 1's side. Points are set to 0 for each side.
+- Does the game have an end? If so, what are the conditions for when it ends?
+    The game ends when either side reaches the goal point value.
+- What `if`s will there be?
+    If the ball touches the right edge of the box, player 1 gets the point. The left, player 2 gets the point. If either value reaches 5, the game ends.
+
+
+### Visual Game Components:
+- What are the visual game components? For example, in Bouncing Box, the game components were the board and the box.
+    A ball, net, a board, and two "paddles"
+  - Which will be static? (the board)
+      The net and board
+  - Which will be animated? (the box)
+      The ball and paddles
+- What data will you need to manage each game component? For example, in Bouncing Box, the data values were `positionX`, `speedX`, and `points`.
+      The paddles require positionX and speedY.
+      The ball requires speedX and SpeedY.
+      Each paddle will have a points value associated with it.
+
+
+### Events / Logic 
+- What events will occur in this game? (timer events, keyboard events, clicking events?)
+    Keyboard events for paddles
+- How do those events affect the data of the program?
+- For each "event", write out the high-level logic of what will happen. It is better (and tricky) to be as specific as you can while remaining high-level!
