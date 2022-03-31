@@ -24,6 +24,14 @@
 
 ### Events / Logic 
 - What events will occur in this game? (timer events, keyboard events, clicking events?)
-    Keyboard events for paddles
+    Keyboard events for paddles, to track movement up and down.
+    Possibly a timer for games that last too long.
+    Detection when the ball reaches a goal zone.
 - How do those events affect the data of the program?
+    The paddles are what the ball bounces off of, and is how players prevent the other from scoring.
+    When the ball reaches a goal zone, points are added to the correct player.
 - For each "event", write out the high-level logic of what will happen. It is better (and tricky) to be as specific as you can while remaining high-level!
+    If keyUP or W is pressed, the corresponding paddle's Y value decreases by speedY, and the paddle appears to move upward.
+    If keyDown or S is pressed, the corresponding paddle's Y value increases by speedY, and the paddle appears to move downward.
+    When the ball reaches the right edge of the board, player 1's paddle's point value goes up by 1.
+    When the ball reaches the left edge of the board, player 2's paddle's point value goes up by 1.
