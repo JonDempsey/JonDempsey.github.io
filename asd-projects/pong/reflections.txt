@@ -11,9 +11,9 @@
 
 ### Visual Game Components:
 - What are the visual game components? For example, in Bouncing Box, the game components were the board and the box.
-    A ball, net, a board, and two "paddles" (which display points corresponding to the player's paddle)
+    A ball, net, a board, two score boxes, and two "paddles" (which display points corresponding to the player's paddle)
   - Which will be static? (the board)
-      The net and board
+      The net, scoreboxes,  and board
   - Which will be animated? (the box)
       The ball, points, and paddles
 - What data will you need to manage each game component? For example, in Bouncing Box, the data values were `positionX`, `speedX`, and `points`.
