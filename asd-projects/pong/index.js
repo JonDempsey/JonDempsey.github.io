@@ -18,6 +18,7 @@ function runProgram(){
     S: 83,
     UP: 38,
     DOWN: 40,
+    SPACE: 32
   }
 
   function createGameItem(id, speedX, speedY){
@@ -30,14 +31,25 @@ function runProgram(){
     return obj;
   }
   
-  var player1 = createGameItem("#paddle1", 0, 20);
-  var player2 = createGameItem("#paddle2", 0, 20);
+  var player1 = createGameItem("#paddle1", 0, 0);
+  var player2 = createGameItem("#paddle2", 0, 0);
+
+  var score1 = 0;
+  $("#score1").text(score1);
+
+  var score2 = 0;
+  $("#score2").text(score2);
+
+  var ball = createGameItem("#ball", 5, 5);
 
   // one-time setup
+  
+  startBall();
+
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
   $(document).on('keyup', handleKeyUp);
-
+  
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -47,11 +59,31 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
+    moveBall();
+    
     repositionPaddles();
     paddleBoundaries();
-    redrawPaddles();
 
+    ballCollisions();
+    
+    redrawElements();
 
+    if (ball.speedX === 0){
+      startBall();
+    }
+
+    if (score1 === 5 || score2 === 5){
+      if (score1 === 5){
+        $("#score1").text("WIN!");
+        $("#score2").text("LOSE!");
+        endGame();
+      }
+      else {
+        $("#score1").text("LOSE!");
+        $("#score2").text("WIN!");
+        endGame();
+      }
+    }
   }
   
   /* 
@@ -90,6 +122,18 @@ function runProgram(){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
+  function startBall(){
+    ball.x = 430;
+    ball.y = 210;
+    ball.speedX = (Math.random() * 3 + 4) * (Math.random() > 0.5 ? -1 : 1);
+    ball.speedY = (Math.random() * 3 + 4) * (Math.random() > 0.5 ? -1 : 1);
+  }
+
+  function moveBall(){
+    ball.x -= ball.speedX;
+    ball.y += ball.speedY;
+  }
+
   function repositionPaddles(){
     player1.y += player1.speedY;
     player2.y += player2.speedY;
@@ -110,24 +154,35 @@ function runProgram(){
     }
   }
 
-  function redrawPaddles(){
+  function ballCollisions() {
+    if (ball.x <= 0 || (ball.x + 20) >= 880) {
+      ball.speedX = 0;
+      ball.speedY = 0;
+
+      if (ball.x < player1.x){
+        score2 += 1;
+        $("#score2").text(score2);
+      }
+      else if (ball.x > (player2.x+20)){
+        score1 += 1;
+        $("#score1").text(score1);
+      }
+
+    }
+    if (ball.y <= 0 || (ball.y + 20) >= 440){
+      ball.speedY = ball.speedY * -1;
+    }
+    if (((ball.x <= (player1.x + 20) && ball.x > (player1.x + 15)) && (ball.y <= (player1.y + 80) && (ball.y + 20) >= player1.y)) || ((ball.x + 20) >= player2.x && ball.x < player2.x + 5) && (ball.y <= (player2.y + 80) && (ball.y + 20) >= player2.y) ){
+      ball.speedX = ball.speedX * -1;
+    }
+  }
+
+  function redrawElements(){
     $(player1.id).css("top", player1.y);
     $(player2.id).css("top", player2.y);
+    $(ball.id).css("top", ball.y);
+    $(ball.id).css("left", ball.x);
   }
-
-  /* function movePaddleUp(player){
-    if (player.y > 0) {
-      player.y -= player.speedY;
-      $(player.id).css("top", player.y);
-    }
-  }
-  function movePaddleDown(player){
-    if (player.y < 360) {
-      player.y += player.speedY;
-      $(player.id).css("top", player.y);
-    }
-  } */
-
   
   function endGame() {
     // stop the interval timer

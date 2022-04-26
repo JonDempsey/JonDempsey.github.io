@@ -11,6 +11,15 @@ body {
   position: relative;
 }
 
+#net {
+  width: 6px;
+  height: 400px;
+  background-color: white;
+  position: absolute;
+  left: 437px;
+  top: 15px;
+}
+
 #paddle1 {
   background-color: rgb(52, 202, 202);
   width: 20px;
@@ -40,21 +49,27 @@ body {
 }
 
 #score1 {
-  width: 200px;
+  width: 250px;
   height: 100px;
   border: 1px solid white;
   background-color: black;
   position: absolute;
   left: -1px;
   top: 440px;
+  font-size: 90px;
+  color: rgb(52, 202, 202);
 }
 
 #score2 {
-  width: 200px;
+  width: 250px;
   height: 100px;
   border: 1px solid white;
   background-color: black;
   position: absolute;
-  left: 200px;
+  left: 250px;
   top: 440px;
+
+  /* Scorebox Text */
+  font-size: 90px;
+  color: rgb(231, 46, 46);
 }
