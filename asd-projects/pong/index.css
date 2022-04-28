@@ -11,17 +11,6 @@ body {
   position: relative;
 }
 
-/*  Cosmetic */
-#net {
-  width: 6px;
-  height: 400px;
-  background-color: white;
-  position: absolute;
-  left: 437px;
-  top: 15px;
-}
-/*           */
-
 /*  Paddles */
 #paddle1 {
   background-color: rgb(52, 202, 202);

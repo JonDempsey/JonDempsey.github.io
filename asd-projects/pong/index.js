@@ -36,13 +36,11 @@ function runProgram(){
   var player1 = createGameItem("#paddle1", 0, 0);
   var player2 = createGameItem("#paddle2", 0, 0);
 
-  //  Object containing scores
-  var scores = {
-    player1: 0,
-    player2: 0,
-  }
-  $("#score1").text(0);
-  $("#score2").text(0);
+  //  variables containing scores
+  var score1 = 0;
+  $("#score1").text(score1);
+  var score2 = 0;
+  $("#score2").text(score2);
 
   //  one-time setup
   
@@ -71,12 +69,8 @@ function runProgram(){
                                                             //
     redrawElements();                                     ////
 
-    if (ball.speedX === 0){   //  if the ball stops (which happens after hitting side), replace it in center
-      startBall();
-    }
-
-    if (scores.player1 === 5 || scores.player2 === 5){    //  if either player reaches the goal of 5 points,
-      if (scores.player1 === 5){                              //  if player 1 wins
+    if (score1 === 5 || score2 === 5){    //  if either player reaches the goal of 5 points,
+      if (score1 === 5){                              //  if player 1 wins
         $("#score1").text("WIN!");                            //  declare the winner and loser
         $("#score2").text("LOSE!");
         endGame();
@@ -163,14 +157,15 @@ function runProgram(){
       ball.speedY = 0;
 
       if (ball.x < player1.x){                    //  if ball lands behind player 1
-        scores.player2 += 1;                      //  give player 2 a point
-        $("#score2").text(scores.player2);
+        score2 += 1;                      //  give player 2 a point
+        $("#score2").text(score2);
       }
       else if (ball.x > (player2.x+20)){          //  if ball lands behind player 2
-        scores.player1 += 1;                      //  give player 1 a point
-        $("#score1").text(scores.player1);
+        score1 += 1;                      //  give player 1 a point
+        $("#score1").text(score1);
       }
-
+      
+      startBall();
     }
 
     //  bounce on top or bottom
