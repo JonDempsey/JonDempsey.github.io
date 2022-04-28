@@ -11,6 +11,7 @@ body {
   position: relative;
 }
 
+/*  Cosmetic */
 #net {
   width: 6px;
   height: 400px;
@@ -19,7 +20,9 @@ body {
   left: 437px;
   top: 15px;
 }
+/*           */
 
+/*  Paddles */
 #paddle1 {
   background-color: rgb(52, 202, 202);
   width: 20px;
@@ -37,6 +40,7 @@ body {
   left: 780px;
   top: 180px;
 }
+/*          */
 
 #ball {
   background-color: aliceblue;
@@ -48,6 +52,7 @@ body {
   top: 210px;
 }
 
+/*  Scores  */
 #score1 {
   width: 250px;
   height: 100px;
@@ -56,6 +61,8 @@ body {
   position: absolute;
   left: -1px;
   top: 440px;
+
+  /* Scorebox Text */
   font-size: 90px;
   color: rgb(52, 202, 202);
 }

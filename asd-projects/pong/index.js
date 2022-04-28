@@ -13,14 +13,15 @@ function runProgram(){
   
   // Game Item Objects
 
+  //  Every key press that will be analyzed
   var KEY = {
     W: 87,
     S: 83,
     UP: 38,
     DOWN: 40,
-    SPACE: 32
   }
 
+  //  Creates any object that will be moving in some form
   function createGameItem(id, speedX, speedY){
     let obj = {}
     obj.id = id;
@@ -31,24 +32,26 @@ function runProgram(){
     return obj;
   }
   
+  //  Creates Paddles
   var player1 = createGameItem("#paddle1", 0, 0);
   var player2 = createGameItem("#paddle2", 0, 0);
 
-  var score1 = 0;
-  $("#score1").text(score1);
+  //  Object containing scores
+  var scores = {
+    player1: 0,
+    player2: 0,
+  }
+  $("#score1").text(0);
+  $("#score2").text(0);
 
-  var score2 = 0;
-  $("#score2").text(score2);
-
-  var ball = createGameItem("#ball", 5, 5);
-
-  // one-time setup
+  //  one-time setup
   
+  //  places ball in center with random speed and direction
   startBall();
 
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
-  $(document).on('keyup', handleKeyUp);
+  $(document).on('keydown', handleKeyDown);                           // Detects key presses
+  $(document).on('keyup', handleKeyUp);                               // Detects key releases
   
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -59,27 +62,27 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    moveBall();
-    
-    repositionPaddles();
-    paddleBoundaries();
+    moveBall();                                           ////  Movement of all game items
+                                                            //
+    repositionPaddles();                                    //
+    paddleBoundaries();                                     //
+                                                            //
+    ballCollisions();                                       //
+                                                            //
+    redrawElements();                                     ////
 
-    ballCollisions();
-    
-    redrawElements();
-
-    if (ball.speedX === 0){
+    if (ball.speedX === 0){   //  if the ball stops (which happens after hitting side), replace it in center
       startBall();
     }
 
-    if (score1 === 5 || score2 === 5){
-      if (score1 === 5){
-        $("#score1").text("WIN!");
+    if (scores.player1 === 5 || scores.player2 === 5){    //  if either player reaches the goal of 5 points,
+      if (scores.player1 === 5){                              //  if player 1 wins
+        $("#score1").text("WIN!");                            //  declare the winner and loser
         $("#score2").text("LOSE!");
         endGame();
       }
-      else {
-        $("#score1").text("LOSE!");
+      else {                                                  //  if player 2 wins
+        $("#score1").text("LOSE!");                           //  declare the winner and loser
         $("#score2").text("WIN!");
         endGame();
       }
@@ -107,7 +110,7 @@ function runProgram(){
     }
   }
 
-  function handleKeyUp(event){
+  function handleKeyUp(event){                    //  makes sure paddles stop when keys aren't held down
     var keycode = event.which;
 
     if (keycode === KEY.W | keycode === KEY.S){
@@ -123,23 +126,23 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   function startBall(){
-    ball.x = 430;
-    ball.y = 210;
-    ball.speedX = (Math.random() * 3 + 4) * (Math.random() > 0.5 ? -1 : 1);
-    ball.speedY = (Math.random() * 3 + 4) * (Math.random() > 0.5 ? -1 : 1);
+    ball.x = 430;     //  Center Ball
+    ball.y = 210;     //
+    ball.speedX = (Math.random() * 3 + 4) * (Math.random() > 0.5 ? -1 : 1);   //  Give ball random speed and direction
+    ball.speedY = (Math.random() * 3 + 4) * (Math.random() > 0.5 ? -1 : 1);   //
   }
 
-  function moveBall(){
+  function moveBall(){            //  change ball's location value
     ball.x -= ball.speedX;
     ball.y += ball.speedY;
   }
 
-  function repositionPaddles(){
+  function repositionPaddles(){   //  change paddles' location values
     player1.y += player1.speedY;
     player2.y += player2.speedY;
   }
 
-  function paddleBoundaries(){
+  function paddleBoundaries(){    //  detects player trying to pass top or bottom of board, and blocks them
     if (player1.y < 0){
       player1.y = 0;
     }
@@ -155,29 +158,33 @@ function runProgram(){
   }
 
   function ballCollisions() {
-    if (ball.x <= 0 || (ball.x + 20) >= 880) {
+    if (ball.x <= 0 || (ball.x + 20) >= 880) {    //  if ball hits either left or right side, reset position and assign score
       ball.speedX = 0;
       ball.speedY = 0;
 
-      if (ball.x < player1.x){
-        score2 += 1;
-        $("#score2").text(score2);
+      if (ball.x < player1.x){                    //  if ball lands behind player 1
+        scores.player2 += 1;                      //  give player 2 a point
+        $("#score2").text(scores.player2);
       }
-      else if (ball.x > (player2.x+20)){
-        score1 += 1;
-        $("#score1").text(score1);
+      else if (ball.x > (player2.x+20)){          //  if ball lands behind player 2
+        scores.player1 += 1;                      //  give player 1 a point
+        $("#score1").text(scores.player1);
       }
 
     }
+
+    //  bounce on top or bottom
     if (ball.y <= 0 || (ball.y + 20) >= 440){
       ball.speedY = ball.speedY * -1;
     }
+
+    //  bounce on paddles if edge touches first five pixels
     if (((ball.x <= (player1.x + 20) && ball.x > (player1.x + 15)) && (ball.y <= (player1.y + 80) && (ball.y + 20) >= player1.y)) || ((ball.x + 20) >= player2.x && ball.x < player2.x + 5) && (ball.y <= (player2.y + 80) && (ball.y + 20) >= player2.y) ){
       ball.speedX = ball.speedX * -1;
     }
   }
 
-  function redrawElements(){
+  function redrawElements(){              //  updates CSS of game items
     $(player1.id).css("top", player1.y);
     $(player2.id).css("top", player2.y);
     $(ball.id).css("top", ball.y);
