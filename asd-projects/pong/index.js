@@ -22,25 +22,29 @@ function runProgram(){
   }
 
   //  Creates any object that will be moving in some form
-  function createGameItem(id, speedX, speedY){
+  function createGameItem(id){
     let obj = {}
     obj.id = id;
     obj.x = parseFloat($(obj.id).css("left"));
     obj.y = parseFloat($(obj.id).css("top"));
-    obj.speedX = speedX;
-    obj.speedY = speedY;
+    obj.speedX = 0;
+    obj.speedY = 0;
     return obj;
   }
   
   //  Creates Paddles
-  var player1 = createGameItem("#paddle1", 0, 0);
-  var player2 = createGameItem("#paddle2", 0, 0);
+  var player1 = createGameItem("#paddle1");
+  var player2 = createGameItem("#paddle2");
 
-  //  variables containing scores
-  var score1 = 0;
-  $("#score1").text(score1);
-  var score2 = 0;
-  $("#score2").text(score2);
+  var ball = createGameItem("#ball");
+
+  //  Object containing scores
+  var scores = {
+    p1: 0,
+    p2: 0
+  }
+  $("#score1").text(scores.p1);
+  $("#score2").text(scores.p2);
 
   //  one-time setup
   
@@ -61,16 +65,16 @@ function runProgram(){
   */
   function newFrame() {
     moveBall();                                           ////  Movement of all game items
-                                                            //
+
     repositionPaddles();                                    //
     paddleBoundaries();                                     //
-                                                            //
+
     ballCollisions();                                       //
-                                                            //
+
     redrawElements();                                     ////
 
-    if (score1 === 5 || score2 === 5){    //  if either player reaches the goal of 5 points,
-      if (score1 === 5){                              //  if player 1 wins
+    if (scores.p1 === 5 || scores.p2 === 5){    //  if either player reaches the goal of 5 points,
+      if (scores.p1 === 5){                              //  if player 1 wins
         $("#score1").text("WIN!");                            //  declare the winner and loser
         $("#score2").text("LOSE!");
         endGame();
@@ -127,7 +131,7 @@ function runProgram(){
   }
 
   function moveBall(){            //  change ball's location value
-    ball.x -= ball.speedX;
+    ball.x += ball.speedX;
     ball.y += ball.speedY;
   }
 
@@ -157,12 +161,12 @@ function runProgram(){
       ball.speedY = 0;
 
       if (ball.x < player1.x){                    //  if ball lands behind player 1
-        score2 += 1;                      //  give player 2 a point
-        $("#score2").text(score2);
+        scores.p2 += 1;                      //  give player 2 a point
+        $("#score2").text(scores.p2);
       }
       else if (ball.x > (player2.x+20)){          //  if ball lands behind player 2
-        score1 += 1;                      //  give player 1 a point
-        $("#score1").text(score1);
+        scores.p1 += 1;                      //  give player 1 a point
+        $("#score1").text(scores.p1);
       }
       
       startBall();
