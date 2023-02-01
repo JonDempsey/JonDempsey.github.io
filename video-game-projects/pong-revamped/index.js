@@ -101,15 +101,32 @@
     }
 
     // TODO 3: bounce the ball off each of the paddles
-
-    if ((ball.y > paddleCPU.y && ball.y < (paddleCPU.y + widthCPU)) && ((ball.x + 20) > paddleCPU.x && ball.x < (paddleCPU.x + widthCPU)) && ball.xVelocity > 0){  //  The ball will bounce off the CPU if it falls within its height AND reaches its x position
+    if ((ball.y > paddleCPU.y && ball.y < (paddleCPU.y + heightCPU)) && ((ball.x + 20) > paddleCPU.x && ball.x < (paddleCPU.x + widthCPU)) && ball.xVelocity > 0){  //  The ball will bounce off the CPU if it falls within its height AND reaches its x position
       ball.xVelocity *= -1;
+    }
+
+    if ((ball.y > paddlePlayer.y && ball.y < (paddlePlayer.y + heightPlayer)) && (ball.x < (paddlePlayer.x + widthPlayer) && (ball.x + 20) > paddlePlayer.x) && ball.xVelocity < 0){  //  The ball will bounce off the Player if it falls within its height AND reaches its x position
+      ball.xVelocity *= -1;
+    }
+
+  }
+
+  function checkCollision(ballWidth){
+    if (ball.y < 0){
+      ball.yVelocity *= -1;
+    }
+
+    if (ball.y > canvas.height){
+      ball.yVelocity *= -1;
+    }
+
+    if ((ball.y > paddleCPU.y && ball.y < (paddleCPU.y + widthCPU)) && ((ball.x + 20) > paddleCPU.x && ball.x < (paddleCPU.x + widthCPU)) && ball.xVelocity > 0){ 
+      ball.xVelocity *= -1;   //  The ball will bounce off the CPU if it falls within its height AND reaches its x position
     }
 
     if ((ball.y > paddlePlayer.y && ball.y < (paddlePlayer.y + widthPlayer)) && (ball.x < (paddlePlayer.x + widthPlayer) && (ball.x + 20) > paddlePlayer.x) && ball.xVelocity < 0){  //  The ball will bounce off the Player if it falls within its height AND reaches its x position
-      ball.xVelocity *= -1;
+      ball.xVelocity *= -1;   //  The ball will bounce off the Player if it falls within its height AND reaches its x position
     }
-
   }
 
   // helper function that wraps the draw.rect function for easy paddle making
