@@ -24,7 +24,7 @@
   // Variable declarations for the paddles and the ball which are drawn using createJS (see bower_components/opspark-draw/draw.js)
   const
     paddlePlayer = createPaddle(),
-    paddleCPU = createPaddle({ x: canvas.width - 20, y: canvas.height - 100 }),
+    paddleCPU = createPaddle({ x: canvas.width - 30, y: canvas.height - 100 }),
     ball = draw.circle(20, '#CCC');
     
   // set initial properties for the paddles 
@@ -101,11 +101,21 @@
     }
 
     // TODO 3: bounce the ball off each of the paddles
-    if ((ball.y > paddleCPU.y && ball.y < (paddleCPU.y + heightCPU)) && ((ball.x + 20) > paddleCPU.x && ball.x < (paddleCPU.x + widthCPU)) && ball.xVelocity > 0){  //  The ball will bounce off the CPU if it falls within its height AND reaches its x position
+    if ((ball.y > paddleCPU.y &&              //  ball is below the top of the paddle
+      ball.y < (paddleCPU.y + heightCPU)) &&  //  ball is above the bottom of the paddle
+      ((ball.x + 20) > paddleCPU.x &&         //  right side of the ball is past the left side of the paddle
+      ball.x < (paddleCPU.x + widthCPU)) &&   //  left side of the ball has not past the right side of the paddle
+      ball.xVelocity > 0)                     //  ball is travelling to the right
+      {
       ball.xVelocity *= -1;
     }
 
-    if ((ball.y > paddlePlayer.y && ball.y < (paddlePlayer.y + heightPlayer)) && (ball.x < (paddlePlayer.x + widthPlayer) && (ball.x + 20) > paddlePlayer.x) && ball.xVelocity < 0){  //  The ball will bounce off the Player if it falls within its height AND reaches its x position
+    if ((ball.y > paddlePlayer.y &&
+      ball.y < (paddlePlayer.y + heightPlayer)) &&
+      (ball.x < (paddlePlayer.x + widthPlayer) &&
+      (ball.x + 20) > paddlePlayer.x)
+      && ball.xVelocity < 0)
+      {
       ball.xVelocity *= -1;
     }
 
