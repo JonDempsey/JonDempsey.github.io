@@ -1,0 +1,13 @@
+{
+  "name": "dev-log",
+  "_cacheHeaders": {
+    "ETag": "W/\"85760b664e3b6b7eac2dec6b301f30c1\"",
+    "Content-Type": "text/html; charset=utf-8"
+  },
+  "_release": "e-tag:W/\"85760b6",
+  "main": "index",
+  "_source": "https://github.com/JonDempsey/dev-log",
+  "_target": "*",
+  "_originalSource": "https://github.com/JonDempsey/dev-log",
+  "_direct": true
+}
