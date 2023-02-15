@@ -100,4 +100,4 @@
   // OUR MODULE CODE GOES ABOVE HERE //
   
 // TODO 3: Pass your gaming library into the index.js module:
-}(window, window.createjs, window.opspark));
+}(window, window.createjs, window.opspark, window.dev-log));
