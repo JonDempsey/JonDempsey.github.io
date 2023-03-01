@@ -22,10 +22,17 @@
     .activateTick();
 
   // Variable declarations for the paddles and the ball which are drawn using createJS (see bower_components/opspark-draw/draw.js)
+  //scores
+  var playerScore = 0;
+  var CPUScore = 0;
+  
   const
     paddlePlayer = createPaddle(),
     paddleCPU = createPaddle({ x: canvas.width - 30, y: canvas.height - 100 }),
-    ball = draw.circle(20, '#CCC');
+    ball = draw.circle(20, '#CCC'),
+    //attempt to create score text boxes
+    CPUTxtScore = draw.textfield(CPUScore, "15px Arial", "#000000", "center", "top", (canvas.width/2 + 20), 40),
+    playerText = draw.textfield(playerScore, "15px Arial", "#000000", "center", "top", (canvas.width/2 - 20), 40);
     
   // set initial properties for the paddles 
   paddlePlayer.yVelocity = 0;
@@ -60,6 +67,7 @@
     }
   }
 
+
   function update(event) {
     const
       boundsCPU = paddleCPU.getBounds(),
@@ -93,11 +101,13 @@
     // TODO 1: bounce the ball off the top
     if (ball.y < 0){
       ball.yVelocity *= -1;
+      createjs.Sound.play("wall");
     }
 
     // TODO 2: bounce the ball off the bottom
     if (ball.y > canvas.height){
       ball.yVelocity *= -1;
+      createjs.Sound.play("wall");
     }
 
     // TODO 3: bounce the ball off each of the paddles
@@ -107,6 +117,7 @@
       ball.x < (paddleCPU.x + widthCPU)) &&   //  left side of the ball has not past the right side of the paddle
       ball.xVelocity > 0)                     //  ball is travelling to the right
       {
+      createjs.Sound.play("hit");
       ball.xVelocity *= -1;
     }
 
@@ -116,7 +127,29 @@
       (ball.x + 20) > paddlePlayer.x)
       && ball.xVelocity < 0)
       {
+      createjs.Sound.play("hit");
       ball.xVelocity *= -1;
+    }
+
+    // Ball resets when out of bounds
+    if (ball.x < 0){
+      ball.x = canvas.width / 2;
+      ball.y = canvas.height / 2;
+      ball.xVelocity = 5;
+      ball.yVelocity = 5;
+      //attempt to update the CPU text score
+      CPUScore++;
+      draw.textfield(CPUScore, "15px Arial", "#666666", "center", "top", (canvas.width/2 + 20), 40);
+    }
+    
+    if (ball.x > canvas.width){
+      ball.x = canvas.width / 2;
+      ball.y = canvas.height / 2;
+      ball.xVelocity = 5;
+      ball.yVelocity = 5;
+      //attempt to update the player text score
+      playerScore++;
+      draw.textfield(playerScore, "15px Arial", "#666666", "center", "top", (canvas.width/2 - 20), 40);
     }
 
   }
