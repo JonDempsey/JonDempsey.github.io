@@ -21,7 +21,7 @@
     engine = opspark.V6().activateResize(),
     canvas = engine.getCanvas(),
     stage = engine.getStage(),
-    
+
     
     radius = 25, // the radius of our two circles
     shapeUp = new createjs.Shape(), // the up state: the mouse is NOT intersecting
@@ -95,6 +95,7 @@
     textfield.y = canvas.height / 2 + 50;
   }
 
+  
   function getDistance(pointA, pointB) {
     const
       distanceX = pointB.x - pointA.x,
@@ -102,6 +103,7 @@
       distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     return distance;
   }
+  
 
   // startup the engine (the tick) //
   engine
