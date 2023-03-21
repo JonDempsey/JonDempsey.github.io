@@ -1,5 +1,5 @@
 // TODO 4: add a param for your game lib last //
-(function(window, opspark) {
+(function(window, opspark, devlog) {
   console.log('index.js initialized!');
 
   const
@@ -7,7 +7,8 @@
     engine = opspark.V6().activateResize(),
     canvas = engine.getCanvas(),
     stage = engine.getStage(),
-    textfield = assets.makeTextfield('Degrees: ');
+    textfield = assets.makeTextfield('Degrees: '),
+    library = opspark.devlog;
   
   stage.addChild(textfield);
 
@@ -16,7 +17,8 @@
   
   
   // TODO 5: Center the ship on the stage //
-  
+  ship.x = canvas.width - 2;
+  ship.y = canvas.height - 2;
 
   // TODO 6: Add the ship to the stage //
   
@@ -35,6 +37,8 @@
      * these values such that they're packed into a point?
      */
     
+    var mousePos = {x: stage.mouseX, y: stage.mouseY}
+    const degrees = library.getAngleDegrees(mousePos, ship);
     
     // TODO 8: Set the ship's rotation property to the degrees //
     

@@ -21,7 +21,7 @@
     engine = opspark.V6().activateResize(),
     canvas = engine.getCanvas(),
     stage = engine.getStage(),
-
+    getDistance = devlog.phyz.getDistance,
     
     radius = 25, // the radius of our two circles
     shapeUp = new createjs.Shape(), // the up state: the mouse is NOT intersecting
@@ -62,7 +62,7 @@
       y: stage.mouseY
     }
 
-    var distance = getDistance(shapeUp, mousePos);
+    const distance = getDistance(shapeUp, mousePos);
     
     /*
      * TODO 6: Check if the mouse is within the area of shapeUp, and set the 
@@ -96,13 +96,13 @@
   }
 
   
-  function getDistance(pointA, pointB) {
+  /*function getDistance(pointA, pointB) {
     const
       distanceX = pointB.x - pointA.x,
       distanceY = pointB.y - pointA.y,
       distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     return distance;
-  }
+  }*/
   
 
   // startup the engine (the tick) //
