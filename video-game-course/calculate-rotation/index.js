@@ -8,7 +8,7 @@
     canvas = engine.getCanvas(),
     stage = engine.getStage(),
     textfield = assets.makeTextfield('Degrees: '),
-    library = opspark.devlog;
+    getAngleDegrees = devlog.numz.getAngleDegrees;
   
   stage.addChild(textfield);
 
@@ -38,7 +38,7 @@
      */
     
     var mousePos = {x: stage.mouseX, y: stage.mouseY}
-    const degrees = library.getAngleDegrees(mousePos, ship);
+    const degrees = getAngleDegrees(mousePos, ship);
     
     // TODO 8: Set the ship's rotation property to the degrees //
     
