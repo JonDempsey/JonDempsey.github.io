@@ -1,0 +1,14 @@
+{
+  "name": "devlog",
+  "homepage": "https://github.com/mtuan-f4/dev-pretty-log",
+  "_release": "168e3589d8",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "168e3589d82e688ea127da6db852e985b2c3e72f"
+  },
+  "_source": "https://github.com/mtuan-f4/dev-pretty-log.git",
+  "_target": "*",
+  "_originalSource": "devlog",
+  "_direct": true
+}
