@@ -17,11 +17,11 @@
   
   
   // TODO 5: Center the ship on the stage //
-  ship.x = canvas.width - 2;
-  ship.y = canvas.height - 2;
+  ship.x = canvas.width / 2;
+  ship.y = canvas.height / 2;
 
   // TODO 6: Add the ship to the stage //
-  
+  stage.addChild(ship);
 
   
   function update(event) {
@@ -41,7 +41,7 @@
     const degrees = getAngleDegrees(mousePos, ship);
     
     // TODO 8: Set the ship's rotation property to the degrees //
-    
+    ship.rotation = degrees;
     
     
     /*
@@ -49,7 +49,7 @@
      * with the current angle degrees. Degrees will be a value 
      * between π and -π, or, 180 and -180.
      */
-    // assets.updateText(textfield, `Degrees: ${degrees.toFixed(3)}°`, canvas);
+    assets.updateText(textfield, `Degrees: ${degrees.toFixed(3)}°`, canvas);
   }
 
   engine
