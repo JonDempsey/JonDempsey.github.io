@@ -14,15 +14,23 @@
 
   // try a different hex color if you want //
   const ship = assets.makeShip('#4286f4');
-  
+  const enemyShip1 = assets.makeShip('#eb4034');
+  const enemyShip2 = assets.makeShip('#eb4034');
   
   // TODO 5: Center the ship on the stage //
   ship.x = canvas.width / 2;
   ship.y = canvas.height / 2;
 
+  enemyShip1.x = Math.random() * canvas.width;
+  enemyShip1.y = Math.random() * canvas.height;
+
+  enemyShip2.x = Math.random() * canvas.width;
+  enemyShip2.y = Math.random() * canvas.height;
+
   // TODO 6: Add the ship to the stage //
   stage.addChild(ship);
-
+  stage.addChild(enemyShip1);
+  stage.addChild(enemyShip2);
   
   function update(event) {
     /*
@@ -38,11 +46,13 @@
      */
     
     var mousePos = {x: stage.mouseX, y: stage.mouseY}
-    const degrees = getAngleDegrees(mousePos, ship);
+    const degrees = getAngleDegrees(ship, mousePos);
+
     
     // TODO 8: Set the ship's rotation property to the degrees //
     ship.rotation = degrees;
-    
+    enemyShip1.rotation = getAngleDegrees(enemyShip1, ship);
+    enemyShip2.rotation = getAngleDegrees(enemyShip2, ship);
     
     /*
      * TODO 9: Uncomment the line below to update the textfield  
