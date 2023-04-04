@@ -1,0 +1,20 @@
+{
+  "name": "dev-log",
+  "homepage": "https://github.com/JonDempsey/dev-log",
+  "authors": [
+    "JonDempsey <jdempopspark@gmail.com>"
+  ],
+  "description": "this is a video game library to help develop games",
+  "main": "index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
