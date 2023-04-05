@@ -70,8 +70,9 @@
           update(event) {
             // template method //
           },
-          
-          /**
+        };
+      },
+      /**
            * Updates the diagonal velocity properties of a body,
            * taking into account the body's current velocity
            * and applying any forces acting against the body
@@ -86,30 +87,28 @@
            * @param {Number} forceOnY: The force acting against
            * the body on the y axis.
            */
-          updateVelocity(body, forceOnX, forceOnY) {
-            const
-              angle = body.rotation * Math.PI / 180,
-              accelerationOnX = Math.cos(angle) * forceOnX,
-              accelerationOnY = Math.sin(angle) * forceOnY;
-            body.velocityX += accelerationOnX;
-            body.velocityY += accelerationOnY;
-          },
+      updateVelocity(body, forceOnX, forceOnY) {
+        const
+          angle = body.rotation * Math.PI / 180,
+          accelerationOnX = Math.cos(angle) * forceOnX,
+          accelerationOnY = Math.sin(angle) * forceOnY;
+        body.velocityX += accelerationOnX;
+        body.velocityY += accelerationOnY;
+      },
 
-          /**
-           * Updates the x and y properties of a body based on its
-           * velocityX and velocityY, and, updates the rotation of
-           * a body based on its rotationalVelocity.
-           * 
-           * @param {Object} body: The body must be an Object
-           * with x, y, rotation, velocityX, velocityY, and
-           * rotationalVelocity properties.
-           */
-          updatePosition(body) {
-            body.x += body.velocityX;
-            body.y += body.velocityY;
-            body.rotation += body.rotationalVelocity;
-          },
-        };
+      /**
+       * Updates the x and y properties of a body based on its
+       * velocityX and velocityY, and, updates the rotation of
+       * a body based on its rotationalVelocity.
+       * 
+       * @param {Object} body: The body must be an Object
+       * with x, y, rotation, velocityX, velocityY, and
+       * rotationalVelocity properties.
+       */
+      updatePosition(body) {
+        body.x += body.velocityX;
+        body.y += body.velocityY;
+        body.rotation += body.rotationalVelocity;
       },
     },
   };

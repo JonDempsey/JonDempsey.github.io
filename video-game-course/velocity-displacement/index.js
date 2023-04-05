@@ -34,7 +34,7 @@
      * is available to you in this scope as, "this".
      * 2. What are the x and y forces acting on our ship?
      */
-    devlog.phyz.updateVelocity(this, this.propulsion. this.propulsion);
+    devlog.phyz.updateVelocity(this, ship.propulsion, ship.propulsion);
     
     
     // also check if the ship needs to rebound off a boundary //
@@ -76,7 +76,8 @@
   // listen for user releasing keys //
   document.onkeyup = function(event) {
     // TODO 13: How do we stop the application of forces?
-    
+    ship.propulsion = 0;
+    ship.rotationalVelocity = 0;
   };
   
   function reboundCircularAssetInArea(body, area) {
@@ -92,10 +93,11 @@
       // we've struck the right side of the area //
       body.x = right - radius;
       body.velocityX *= -1;
-    } else if ( /* TODO 9: Check if body's hit left side */ false ) {
+    } else if ( /* TODO 9: Check if body's hit left side */ body.x - radius < left) {
       // we've struck the left side of the area //
       // TODO 10: Code the reaction to hitting the left side
-      
+      body.x = left + radius;
+      body.velocityX *= -1;
     }
 
     // check for hit on top or bottom //
@@ -103,10 +105,11 @@
       // we've struck the right side of the area //
       body.y = top + radius;
       body.velocityY *= -1;
-    } else if ( /* TODO 11: Check if body's hit bottom */ false ) {
+    } else if ( /* TODO 11: Check if body's hit bottom */ body.y + radius > bottom ) {
       // we've struck the bottom of the area //
       // TODO 12: Code the reaction to hitting the bottom
-      
+      body.y = bottom - radius;
+      body.velocityY *= -1;
     }
   }
   
