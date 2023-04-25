@@ -1,4 +1,4 @@
-(function(window, opspark, racket) {
+(function(window, opspark, racket, devlog) {
   /**
    * Creates and returns the space module. Listens for SPAWN 
    * events, adding any bodies in the event
@@ -49,12 +49,12 @@
             const bodyB = active[j];
             
             // TODO 1: Calculate hit test components
-            
-            
-              
+            const distance = devlog.numz.getDistance(bodyA, bodyB);
+
+
             // TODO 2: Do collision check: how do we know if bodies are colliding?
-            if(/* replace with collision check */ false) {
-              // console.log('hit!');
+            if(distance <= (bodyA.radius + bodyB.radius)) {
+              console.log('hit!');
               
               // TODO 3: Calculate springToX and springToY 
               
@@ -78,4 +78,4 @@
       }
     };
   };
-}(window, window.opspark, window.opspark.racket));
+}(window, window.opspark, window.opspark.racket, window.opspark.devlog));

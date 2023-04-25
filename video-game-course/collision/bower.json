@@ -22,6 +22,6 @@
     "racket": "^1.1.1",
     "V6": "^0.0.2",
     "messenjah": "^1.0.0",
-    "dev-log": "https://github.com/JonDempsey/dev-log"
+    "dev-log": "https://github.com/JonDempsey/dev-log.git#^0.1.3"
   }
 }
