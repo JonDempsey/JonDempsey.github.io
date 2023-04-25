@@ -71,6 +71,10 @@
     } else if (event.key === 'ArrowRight') {
       ship.rotationalVelocity = 5;
     }
+
+    if (event.code === 'Space'){
+      
+    }
   };
 
   // listen for user releasing keys //

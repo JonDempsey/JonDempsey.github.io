@@ -44,7 +44,15 @@
       
       return ship;
     },
-    centerOnStage,
+    centerOnStage, /*
+    makeDart(){
+      const radius = 15,
+        dart = dart.circle(radius, radius, "#f54e42", null, null, -(radius + radius / 10), -(radius / 2));
+
+      Object.assign(dart, devlog.phyz.makeBody('dart'));
+
+      dart.propulsion = 0;
+    }*/
   };
 // TODO 5.a: Replace *my-game-lib* with the name of your game lib
 }(window, window.opspark.draw, window.devlog));
