@@ -58,7 +58,8 @@
               console.log('hit!');
               
               // TODO 3: Calculate springToX and springToY 
-              const angleOfApproach = devlog.numz.getAngleDegrees(bodyA, bodyB);
+              //const angleOfApproach = devlog.numz.getAngleDegrees(bodyA, bodyB);
+              const angleOfApproach = Math.atan2( (bodyB.y - bodyA.y), (bodyB.x - bodyA.x) );
 
               const springToX = Math.cos(angleOfApproach) * minDist + bodyA.x;
               const springToY = Math.sin(angleOfApproach) * minDist + bodyA.y;
