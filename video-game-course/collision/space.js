@@ -49,28 +49,31 @@
             const bodyB = active[j];
             
             // TODO 1: Calculate hit test components
-            const distance = devlog.numz.getDistance(bodyA, bodyB);
+            const distance = devlog.phyz.getDistance(bodyA, bodyB);
 
 
             // TODO 2: Do collision check: how do we know if bodies are colliding?
-            if(distance <= (bodyA.radius + bodyB.radius)) {
+            const minDist = bodyA.radius + bodyB.radius;
+            if(distance <= (minDist)) {
               console.log('hit!');
               
               // TODO 3: Calculate springToX and springToY 
-              
-              
+              const angleOfApproach = devlog.numz.getAngleDegrees(bodyA, bodyB);
+
+              const springToX = Math.cos(angleOfApproach) * minDist + bodyA.x;
+              const springToY = Math.sin(angleOfApproach) * minDist + bodyA.y;
                 
               // TODO 4: Calculate acceleration to spring-to point, factor in dampeningForce
-              
-              
+              const accelerationOnX = (springToX - bodyB.x) * dampeningForce;
+              const accelerationOnY = (springToY - bodyB.y) * dampeningForce;
               
               // TODO 5: Apply acceleration to bodyB
-              
-              
+              bodyB.velocityX += accelerationOnX;
+              bodyB.velocityY += accelerationOnY;
               
               // TODO 6: Apply inverse acceleration to bodyA
-              
-              
+              bodyA.velocityX -= accelerationOnX;
+              bodyA.velocityY -= accelerationOnY;
               
             }
           }
@@ -78,4 +81,4 @@
       }
     };
   };
-}(window, window.opspark, window.opspark.racket, window.opspark.devlog));
+}(window, window.opspark, window.opspark.racket, window.devlog));
