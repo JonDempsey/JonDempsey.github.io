@@ -11,6 +11,9 @@
         LEFT: controls.KEYS.LEFT,
         RIGHT: controls.KEYS.RIGHT,
         FIRE: controls.KEYS.SPACE,
+        DOWN: controls.KEYS.DOWN,
+        F: controls.KEYS.F,
+        SHIFT_RIGHT: controls.KEYS.SHIFT_RIGHT,
       };
       
       let 
@@ -40,6 +43,21 @@
       
       function setRateOfFire(value) {
         fire = _.throttle(player => projectile.fire(player), value, { 'trailing': false });
+      }
+
+      function inertia() {
+        if (ship.velocityX > 0){
+          ship.velocityX -= 0.01;
+        }
+        if (ship.velocityX < 0){
+          ship.velocityX += 0.01;
+        }
+        if (ship.velocityY > 0){
+          ship.velocityY -= 0.01;
+        }
+        if (ship.velocityY < 0){
+          ship.velocityY += 0.01;
+        }
       }
       
       function handleCollisionShip(impact) {
@@ -71,9 +89,17 @@
         update(event) {
           // left and right arrows cannot be pressed at the same time //
           if (controls.isActive(keyMap.LEFT)) {
+            if (controls.isActive(keyMap.F)){
+              ship.rotationalVelocity = -1;
+            } else {
             ship.rotationalVelocity = -5;
+            }
           } else if (controls.isActive(keyMap.RIGHT)) {
+            if (controls.isActive(keyMap.F)){
+              ship.rotationalVelocity = 1;
+            } else {
             ship.rotationalVelocity = 5;
+            }
           } else {
             ship.rotationalVelocity = 0;
           }
@@ -82,9 +108,13 @@
           if (controls.isActive(keyMap.UP)) {
             emitter.emit(ship.getExhaustPoint());
             ship.propulsion = 0.1;
+          } else if (controls.isActive(keyMap.DOWN)){
+            ship.propulsion = -0.075;
           } else {
             emitter.stop();
-            ship.propulsion = 0;
+            ship.propulsion = 0.0;
+
+            inertia();
           }
           
           /*
@@ -92,6 +122,7 @@
            * Throttle the rateOfFire using _.throttle based on
            * level.rateOfFire.
            */
+
           if (controls.isActive(keyMap.FIRE)) {
             fire(ship);
           }

@@ -38,7 +38,7 @@
       
       function handleCollisionProjectile(impact) {
         // TODO : Consider if particles are necessary here //
-        // particleManager.makeEmitter(1, 2, '#FF0000').emit({x: projectile.x, y: projectile.y}, 0.5);
+        
       }
 
       function onTweenComplete(e) {
@@ -64,7 +64,7 @@
           //console.log(projectile.velocityY);
 
           var projectilePoint = emitter.getProjectilePoint();
-          //projectile.activate();
+          // projectile.activate();
           projectile.x = projectilePoint.x;
           projectile.y = projectilePoint.y;
           

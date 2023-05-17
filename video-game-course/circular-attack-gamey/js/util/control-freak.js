@@ -12,6 +12,8 @@
    */
   opspark.controlFreak = function() {
     const
+      KEY_SHIFT_RIGHT = 'ShiftRight',
+      KEY_F = 'KeyF',
       KEY_SLASHF = 'Slash',
       KEY_SPACE = 'Space',
       KEY_UP = 'ArrowUp',
@@ -19,6 +21,7 @@
       KEY_LEFT = 'ArrowLeft',
       KEY_RIGHT = 'ArrowRight',
       KEY_W = 'KeyW',
+      KEY_S = 'KeyS',
       KEY_A = 'KeyA',
       KEY_D = 'KeyD',
       KEY_E = 'KeyE',
@@ -60,6 +63,8 @@
         if(activeKeys[KEY_SPACE] || 
            activeKeys[KEY_UP] ||
            activeKeys[KEY_LEFT] ||
+           activeKeys[KEY_DOWN] ||
+           activeKeys[KEY_F] ||
            activeKeys[KEY_RIGHT]) { 
              e.preventDefault();
              e.stopPropagation(); 
@@ -87,13 +92,17 @@
         SPACE: KEY_SPACE,
         SLASHF: KEY_SLASHF,
         UP: KEY_UP,
+        DOWN: KEY_DOWN,
         LEFT: KEY_LEFT,
         RIGHT: KEY_RIGHT,
+        F: KEY_F,
         W: KEY_W,
+        S: KEY_S,
         A: KEY_A,
         D: KEY_D,
         E: KEY_E,
         SHIFT_LEFT: KEY_SHIFT_LEFT,
+        SHIFT_RIGHT: KEY_SHIFT_RIGHT,
       };
       
       return API;
