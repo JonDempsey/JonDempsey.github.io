@@ -45,7 +45,7 @@
         fire = _.throttle(player => projectile.fire(player), value, { 'trailing': false });
       }
 
-      function inertia() {
+      function inertia() {    //  NEW FEATURE: Slows down the ship if there's no throttle to make for better movement
         if (ship.velocityX > 0){
           ship.velocityX -= 0.01;
         }
@@ -89,13 +89,13 @@
         update(event) {
           // left and right arrows cannot be pressed at the same time //
           if (controls.isActive(keyMap.LEFT)) {
-            if (controls.isActive(keyMap.F)){
+            if (controls.isActive(keyMap.F)){         //  NEW FEATURE: Holding F while turning allows for fine-tuning of aim
               ship.rotationalVelocity = -1;
             } else {
             ship.rotationalVelocity = -5;
             }
           } else if (controls.isActive(keyMap.RIGHT)) {
-            if (controls.isActive(keyMap.F)){
+            if (controls.isActive(keyMap.F)){         //  NEW FEATURE: Holding F while turning allows for fine-tuning of aim
               ship.rotationalVelocity = 1;
             } else {
             ship.rotationalVelocity = 5;
@@ -108,7 +108,7 @@
           if (controls.isActive(keyMap.UP)) {
             emitter.emit(ship.getExhaustPoint());
             ship.propulsion = 0.1;
-          } else if (controls.isActive(keyMap.DOWN)){
+          } else if (controls.isActive(keyMap.DOWN)){   //  NEW FEATURE: Ship can now move in reverse, because it's more controllable that way
             ship.propulsion = -0.075;
           } else {
             emitter.stop();
